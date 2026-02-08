@@ -27,4 +27,39 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+  if (typeof password !== 'string') return 'weak';
+  const checkPassword = password + '';
+  if (checkPassword.length === 0 || checkPassword === '') return 'weak';
+
+  if (checkPassword.length >= 8) {
+    if (
+      /[A-Z]/.test(checkPassword) &&
+      /[a-z]/.test(checkPassword) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?)]/.test(checkPassword) &&
+      /[0-9]/.test(checkPassword)
+    )
+      return 'very strong';
+    if (
+      /[A-Z]/.test(checkPassword) &&
+      /[a-z]/.test(checkPassword) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?)]/.test(checkPassword)
+    )
+      return 'strong';
+    if (
+      /[A-Z]/.test(checkPassword) &&
+      /[a-z]/.test(checkPassword) &&
+      /[0-9]/.test(checkPassword)
+    )
+      return 'strong';
+    if (/[a-z]/.test(checkPassword)) return 'medium';
+  } else {
+    if (
+      /[a-z]/.test(checkPassword) &&
+      /[0-9]/.test(checkPassword) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?)]/.test(checkPassword)
+    )
+      return 'medium';
+    if (/^[a-z]+$/.test(checkPassword)) return 'weak';
+    if (/^[0-9]+$/.test(checkPassword)) return 'weak';
+  }
 }

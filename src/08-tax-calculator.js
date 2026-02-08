@@ -27,4 +27,21 @@
  */
 export function calculateTax(income) {
   // Your code here
+  
+  let tax;
+  if (income <= 0) return 0;
+  if (income > 0 && income <= 10000) {
+    return 0;
+  } else if (income >= 10_001 && income <= 30_000) {
+    tax = 0.1 * (income - 10_000);
+  } else if (income > 30_000 && income <= 70_000)
+     {
+      const leftAmount = income - 30_000
+    tax = 2000 + 0.2 * leftAmount;
+  } else if (income > 70_000) {
+    tax =
+      10_000+
+      0.3 * (income - 70_000);
+  }
+  return tax;
 }
